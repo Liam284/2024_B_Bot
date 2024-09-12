@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import static frc.robot.Constants.OperatorConstants.*;
 import static frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
@@ -20,6 +21,8 @@ import edu.wpi.first.wpilibj.Joystick;
  * subsystems, commands, and trigger mappings) should be declared here.
  */
 public class RobotContainer {
+
+  private static Joystick joy = new Joystick(JOYSTICK_PORT);
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
@@ -29,7 +32,6 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    final Joystick joy = new Joystick(JOYSTICK_PORT);
     // Configure the trigger bindings
     configureBindings();
   }
@@ -64,6 +66,7 @@ public class RobotContainer {
   }
 
   public static Joystick getJoy() {
+    
     return joy;
   }
 }
