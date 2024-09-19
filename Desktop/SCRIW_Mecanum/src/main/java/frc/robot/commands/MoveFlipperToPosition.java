@@ -85,7 +85,7 @@ public class MoveFlipperToPosition extends Command {
     
   }
 
-  // Returns true when the command should end.
+  // Returns true when the command should end
   @Override
   public boolean isFinished() {
     return (flipper.getthroughBore().getAbsolutePosition() >= angle - 0.01) && (flipper.getthroughBore().getAbsolutePosition() <= angle +0.01);
