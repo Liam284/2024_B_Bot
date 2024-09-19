@@ -23,6 +23,8 @@ public class DriveSystem extends SubsystemBase {
   private CANSparkMax rearRight;
   private MecanumDrive mecanumDrive;
 
+  private Joystick joy;
+
   /** Creates a new DriveSystem. */
   public DriveSystem() {
 
@@ -34,13 +36,13 @@ public class DriveSystem extends SubsystemBase {
 
     frontRight.setInverted(true);
     rearRight.setInverted(true);
-
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
   }
+
 
   public void drive(double xVelocity, double yVelocity, double rotationVelocity) {
 
@@ -49,6 +51,5 @@ public class DriveSystem extends SubsystemBase {
     double rotation = MathUtil.applyDeadband(joy.getZ(), 0.15);
 
     mecanumDrive.driveCartesian(y, x, rotation);
-
   }
 }

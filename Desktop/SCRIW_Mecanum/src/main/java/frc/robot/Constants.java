@@ -18,6 +18,9 @@ public final class Constants {
     public static final int REARLEFT = 2;
     public static final int FRONTRIGHT = 3;
     public static final int REARRIGHT = 4;
+
+    //subject to change;
+    public static final int FLIPPER_ID = 5;
   }
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
