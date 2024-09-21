@@ -32,7 +32,7 @@ public class Flipper extends SubsystemBase {
     flipperMotor = new WPI_TalonSRX(DriveConstants.FLIPPER_ID);
     flipperMotor.setInverted(false);
     flipperMotor.setNeutralMode(NeutralMode.Brake);
-    
+  
     //flipperEncoder = flipperMotor.getEncoder();
 
     //change numbers later when testing
