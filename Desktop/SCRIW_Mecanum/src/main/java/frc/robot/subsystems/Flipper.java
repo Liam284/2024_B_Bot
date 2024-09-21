@@ -6,13 +6,15 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.RelativeEncoder;
-import com.revrobotics.SparkPIDController;
-import edu.wpi.first.wpilibj.DutyCycleEncoder;
-import com.revrobotics.CANSparkBase.ControlType;
 import com.revrobotics.CANSparkBase.IdleMode;
-import com.revrobotics.CANSparkLowLevel.MotorType;
+import com.revrobotics.CANSparkMax;
+//import com.revrobotics.RelativeEncoder;
+//import com.revrobotics.SparkPIDController;
+import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.DutyCycleEncoder;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 import frc.robot.Constants.DriveConstants.*;
 import frc.robot.Constants.DriveConstants;
@@ -20,24 +22,26 @@ import frc.robot.Constants.DriveConstants;
 public class Flipper extends SubsystemBase {
 
   private DutyCycleEncoder throughBore;
-  private CANSparkMax flipperMotor;
+  private WPI_TalonSRX flipperMotor;
 
-  private RelativeEncoder flipperEncoder;
-  private SparkPIDController flipperPID;
+  //private RelativeEncoder flipperEncoder;
+  private PIDController flipperPID;
 
   /** Creates a new Flipper. */
   public Flipper() {
-    flipperMotor = new CANSparkMax(DriveConstants.FLIPPER_ID, MotorType.kBrushless);
+    flipperMotor = new WPI_TalonSRX(DriveConstants.FLIPPER_ID);
     flipperMotor.setInverted(false);
-    flipperMotor.setIdleMode(IdleMode.kBrake);
+    flipperMotor.setNeutralMode(NeutralMode.Brake);
+    
+    //flipperEncoder = flipperMotor.getEncoder();
 
-    flipperEncoder = flipperMotor.getEncoder();
-    flipperPID = flipperMotor.getPIDController();
+    //change numbers later when testing
+    flipperPID = new PIDController(0.045, 0.005, 0.000);
 
-    flipperPID.setP(0.0001);
-    flipperPID.setFF(0.5);
-    flipperPID.setSmartMotionAllowedClosedLoopError(100, 0);
-    flipperPID.setOutputRange(0, 5000);
+    //flipperPID.setP(0.0001);
+    //flipperPID.setFF(0.5);
+    //flipperPID.setSmartMotionAllowedClosedLoopError(100, 0);
+    //flipperPID.setOutputRange(0, 5000);
     throughBore = new DutyCycleEncoder(2);
 
     

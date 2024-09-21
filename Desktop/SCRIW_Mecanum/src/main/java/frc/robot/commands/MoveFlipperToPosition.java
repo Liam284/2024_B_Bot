@@ -9,6 +9,7 @@ import frc.robot.subsystems.Flipper;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.DutyCycleEncoder;
 
+
 import static frc.robot.Constants.DriveConstants.*;
 
 public class MoveFlipperToPosition extends Command {
@@ -33,6 +34,7 @@ public class MoveFlipperToPosition extends Command {
     this.flipper = flipper; 
     addRequirements(flipper);
 
+    //change numbers after testing
     pidController = new PIDController(
      
       0.045,
