@@ -14,10 +14,10 @@ package frc.robot;
  */
 public final class Constants {
   public static class DriveConstants {
-    public static final int FRONTLEFT = 1;
-    public static final int REARLEFT = 2;
-    public static final int FRONTRIGHT = 3;
-    public static final int REARRIGHT = 4;
+    public static final int FRONTLEFT = 2;
+    public static final int REARLEFT = 4;
+    public static final int FRONTRIGHT = 1;
+    public static final int REARRIGHT = 3 ;
 
     //subject to change;
     public static final int FLIPPER_ID = 5;
