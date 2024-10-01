@@ -24,19 +24,23 @@ import edu.wpi.first.wpilibj.Joystick;
  */
 public class RobotContainer {
 
-  private static Joystick joy = new Joystick(JOYSTICK_PORT);
+  private Joystick joy;
   // The robot's subsystems and commands are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+  private  ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
-  private final CommandXboxController m_driverController =
-      new CommandXboxController(OperatorConstants.kDriverControllerPort);
-  private final DriveSystem mecanumDrive = new DriveSystem();
-  private final DriveWithJoystick driveWithJoystick = new DriveWithJoystick(mecanumDrive, joy);
+  private  CommandXboxController m_driverController = new CommandXboxController(OperatorConstants.kDriverControllerPort);
+
+  private DriveSystem mecanumDrive;
+  private DriveWithJoystick driveWithJoystick;;
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    joy = new Joystick(JOYSTICK_PORT);
+    mecanumDrive = new DriveSystem();
+    driveWithJoystick = new DriveWithJoystick(mecanumDrive, joy);
     mecanumDrive.setDefaultCommand(driveWithJoystick);
+
     // Configure the trigger bindings
     configureBindings();
   }
@@ -70,7 +74,7 @@ public class RobotContainer {
     return Autos.exampleAuto(m_exampleSubsystem);
   }
 
-  public static Joystick getJoy() {
+  public Joystick getJoy() {
     
     return joy;
   }

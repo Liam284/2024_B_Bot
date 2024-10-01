@@ -10,9 +10,10 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel.MotorType;
-import com.revrobotics.CANSparkLowLevel;
 import edu.wpi.first.math.MathUtil;
 import static frc.robot.Constants.DriveConstants.*;
+import static frc.robot.Constants.OperatorConstants.JOYSTICK_PORT;
+
 import frc.robot.RobotContainer;
 
 
@@ -34,7 +35,7 @@ public class DriveSystem extends SubsystemBase {
     frontRight = new CANSparkMax(FRONTRIGHT, MotorType.kBrushless);
     rearRight = new CANSparkMax(REARRIGHT, MotorType.kBrushless);
     mecanumDrive = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
-
+    joy = new Joystick(JOYSTICK_PORT);
     frontRight.setInverted(true);
     rearRight.setInverted(true);
   }
@@ -46,11 +47,6 @@ public class DriveSystem extends SubsystemBase {
 
 
   public void drive(double xVelocity, double yVelocity, double rotationVelocity) {
-
-    double x = MathUtil.applyDeadband(joy.getX(), 0.15);
-    double y = MathUtil.applyDeadband(joy.getY(), 0.15);
-    double rotation = MathUtil.applyDeadband(joy.getZ(), 0.15);
-
-    mecanumDrive.driveCartesian(y, x, rotation);
+    mecanumDrive.driveCartesian(yVelocity, xVelocity, rotationVelocity);
   }
 }

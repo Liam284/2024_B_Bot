@@ -42,7 +42,7 @@ public class Flipper extends SubsystemBase {
     //flipperPID.setFF(0.5);
     //flipperPID.setSmartMotionAllowedClosedLoopError(100, 0);
     //flipperPID.setOutputRange(0, 5000);
-    throughBore = new DutyCycleEncoder(2);
+    throughBore = new DutyCycleEncoder(10);
 
     
 
