@@ -9,12 +9,17 @@ import static frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
 import frc.robot.commands.DriveWithJoystick;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.MoveFlipperToPosition;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.DriveSystem;
+import frc.robot.subsystems.Flipper;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -25,11 +30,16 @@ import edu.wpi.first.wpilibj.Joystick;
 public class RobotContainer {
 
   private Joystick joy;
-  // The robot's subsystems and commands are defined here...
-  private  ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+  private ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
-  // Replace with CommandPS4Controller or CommandJoystick if needed
-  private  CommandXboxController m_driverController = new CommandXboxController(OperatorConstants.kDriverControllerPort);
+  private CommandXboxController m_driverController;
+  private Command moveFlipperToPosition;
+  private XboxController operator;
+  private POVButton startingPosition;
+  private POVButton feed;
+  private POVButton amp;
+
+  private Flipper flipper;
 
   private DriveSystem mecanumDrive;
   private DriveWithJoystick driveWithJoystick;;
@@ -37,9 +47,19 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     joy = new Joystick(JOYSTICK_PORT);
+    operator = new XboxController(OPERATOR_PORT);
     mecanumDrive = new DriveSystem();
+
+    flipper = new Flipper();
+
     driveWithJoystick = new DriveWithJoystick(mecanumDrive, joy);
     mecanumDrive.setDefaultCommand(driveWithJoystick);
+
+    moveFlipperToPosition = new MoveFlipperToPosition(9, flipper);
+
+    startingPosition = new POVButton(operator, 0);
+    feed = new POVButton(operator, 90);
+    amp = new POVButton(operator, 180);
 
     // Configure the trigger bindings
     configureBindings();
@@ -56,11 +76,8 @@ public class RobotContainer {
    */
   private void configureBindings() {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-    new Trigger(m_exampleSubsystem::exampleCondition)
-        .onTrue(new ExampleCommand(m_exampleSubsystem));
-
-    // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
-    // cancelling on release.
+    new Trigger(m_exampleSubsystem::exampleCondition).onTrue(new ExampleCommand(m_exampleSubsystem));
+    //startingPosition.onTrue(Flipper.flip);
     m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
   }
 

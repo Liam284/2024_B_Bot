@@ -23,7 +23,7 @@ public final class Constants {
     public static final int FLIPPER_ID = 5;
   }
   public static class OperatorConstants {
-    public static final int kDriverControllerPort = 0;
-    public static final int JOYSTICK_PORT = 1;
+    public static final int JOYSTICK_PORT = 0;
+    public static final int OPERATOR_PORT = 1;
   }
 }

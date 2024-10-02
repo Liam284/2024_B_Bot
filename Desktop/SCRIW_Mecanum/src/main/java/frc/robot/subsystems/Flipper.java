@@ -15,8 +15,10 @@ import edu.wpi.first.wpilibj.DutyCycleEncoder;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import edu.wpi.first.wpilibj2.command.Command;
 
 import frc.robot.Constants.DriveConstants.*;
+import frc.robot.commands.MoveFlipperToPosition;
 import frc.robot.Constants.DriveConstants;
 
 public class Flipper extends SubsystemBase {
@@ -48,6 +50,9 @@ public class Flipper extends SubsystemBase {
 
   }
 
+  // public Command flip(){
+    
+  // }
   public void flip(double speed){
       flipperMotor.set(speed);
     }
