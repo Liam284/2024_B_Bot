@@ -61,7 +61,6 @@ public class RobotContainer {
     feed = new POVButton(operator, 90);
     amp = new POVButton(operator, 180);
 
-    // Configure the trigger bindings
     configureBindings();
   }
  
